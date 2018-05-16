@@ -10,6 +10,14 @@ namespace ResistanceCalc.Controllers
 {
     public class HomeController : Controller
     {
+        public ICalculateResistance _CalculateResistance { get; }
+
+        public HomeController(ICalculateResistance _CalculateResistance)
+        {
+            this._CalculateResistance = _CalculateResistance;
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -32,6 +40,15 @@ namespace ResistanceCalc.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Resist(ColorCode colorCode)
+        {
+            if (colorCode != null && ModelState.IsValid)
+            {
+                colorCode.Resistance = _CalculateResistance.CalculateResistance(colorCode.ColorA, colorCode.ColorB, colorCode.ColorC, colorCode.ColorD);
+            }
+            return View(colorCode);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

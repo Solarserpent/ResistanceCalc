@@ -1,0 +1,75 @@
+﻿@model ColorCode
+@{
+    ViewData["Title"] = "Resistance is Useful!";
+}
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h2>Resistance is Useful!</h2>
+    </div>
+    <div class="col-md-3 col-md-offset-3">
+        <form asp-controller="home" asp-action="Resist">
+            <label>First Color: </label>
+            <select asp-for="ColorA" asp-items="secondColorItems"></select>
+            <label>Second Color: </label>
+            <select asp-for="ColorB" asp-items="secondColorItems"></select>
+            <label>Third Color: </label>
+            <select asp-for="ColorC" asp-items="thirdColorItems"></select>
+            <label>Fourth Color: </label>
+            <select asp-for="ColorD" asp-items="fourthColorItems"></select>
+            <input type="submit" value="Calculate"/>
+        </form>
+    </div>
+    <div class="col-md-3 ">
+        <div>
+
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        @if (Model?.Resistance != null)
+        {
+            <h1>Resistance is @Model.Resistance.</h1>
+        }
+    </div>
+</div>
+
+
+@functions
+{
+    List<SelectListItem> firstColorItems = getValueColorItems();
+    List<SelectListItem> secondColorItems = getValueColorItems();
+    List<SelectListItem> thirdColorItems = getMagnitudeColorItems();
+    List<SelectListItem> fourthColorItems = getToleranceColorItems();
+
+
+    static List<SelectListItem> getValueColorItems()
+    {
+        var colorItems = new List<SelectListItem>();
+        foreach (var kvPair in ResistanceCalculator.ResistanceValueMap)
+        {
+            colorItems.Add(new SelectListItem { Text = kvPair.Key, Value = kvPair.Key });
+        }
+        return colorItems;
+    }
+
+    static List<SelectListItem> getMagnitudeColorItems()
+    {
+        var colorItems = new List<SelectListItem>();
+        foreach (var kvPair in ResistanceCalculator.ResistanceMagnitudeMap)
+        {
+            colorItems.Add(new SelectListItem { Text = kvPair.Key, Value = kvPair.Key });
+        }
+        return colorItems;
+    }
+
+    static List<SelectListItem> getToleranceColorItems()
+    {
+        var colorItems = new List<SelectListItem>();
+        foreach (var kvPair in ResistanceCalculator.ResistanceToleranceMap)
+        {
+            colorItems.Add(new SelectListItem { Text = kvPair.Key, Value = kvPair.Key });
+        }
+        return colorItems;
+    }
+
+}
