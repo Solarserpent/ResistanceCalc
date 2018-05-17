@@ -10,9 +10,9 @@ namespace ResistanceCalc.Controllers
 {
     public class HomeController : Controller
     {
-        public ICalculateResistance _CalculateResistance { get; }
+        public IOhmValueCalculator _CalculateResistance { get; }
 
-        public HomeController(ICalculateResistance _CalculateResistance)
+        public HomeController(IOhmValueCalculator _CalculateResistance)
         {
             this._CalculateResistance = _CalculateResistance;
         }

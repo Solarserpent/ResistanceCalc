@@ -5,12 +5,23 @@ using System.Threading.Tasks;
 
 namespace ResistanceCalc.Models
 {
-    public interface ICalculateResistance
+    public interface IOhmValueCalculator
     {
-        string CalculateResistance(string colorA, string colorB, string colorC, string colorD);
+        string CalculateResistance(string bandAColor, string bandBColor, string bandCColor, string bandDColor);
+
+        /// <summary>
+        /// Calculates the Ohm value of a resistor based on the band colors.
+        /// </summary>
+        /// <param name="bandAColor">The color of the first figure of component value band.</param>
+        /// <param name="bandBColor">The color of the second significant figure band.</param>
+        /// <param name="bandCColor">The color of the decimal multiplier band.</param>
+        /// <param name="bandDColor">The color of the tolerance value band.</param>
+        (decimal value, decimal tolerance) CalculateOhmValue(string bandAColor, string bandBColor, string bandCColor, string bandDColor);
+
+
     }
 
-    public class ResistanceCalculator : ICalculateResistance
+        public class ResistanceCalculator : IOhmValueCalculator
     {
         public static readonly Dictionary<string, int> ResistanceValueMap = new Dictionary<string, int>()
         {
@@ -44,30 +55,40 @@ namespace ResistanceCalc.Models
         };
 
 
-        public static readonly Dictionary<string, string> ResistanceToleranceMap = new Dictionary<string, string>()
+        public static readonly Dictionary<string, decimal> ResistanceToleranceMap = new Dictionary<string, decimal>()
         {
-            { "None",   "±20%"  },
-            { "Silver", "±10%" },
-            { "Gold",   "±5%" },
-            { "Brown",  "±1%" },
-            { "Red",    "±2%" },
-            { "Green",  "±0.5%" },
-            { "Blue",   "±0.25%"  },
-            { "Violet", "±0.1%"  },
-            { "Gray",   "±0.05%" }
+            { "None",    20M },
+            { "Silver",  10M },
+            { "Gold",    5M },
+            { "Brown",   1M },
+            { "Red",     2M },
+            { "Green",  0.5M },
+            { "Blue",   0.25M },
+            { "Violet", 0.1M },
+            { "Gray",   0.05M }
         };
 
 
 
-        public string CalculateResistance(string colorA, string colorB, string colorC, string colorD)
+        public string CalculateResistance(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
         {
-            if (CheckInputs(colorA, colorB, colorC, colorD))
+                (decimal value, decimal tolerance) = CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor);
+            if (value == decimal.MinusOne)
+                return "Incorrect Color Given";
+            else
+                return $"{value}Ω ±{tolerance}%";
+
+        }
+
+        public (decimal value, decimal tolerance) CalculateOhmValue(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
+        {
+            if (CheckInputs(bandAColor, bandBColor, bandCColor, bandDColor))
             {
-                decimal value = (ResistanceValueMap[colorA] * 10 + ResistanceValueMap[colorB]) * ResistanceMagnitudeMap[colorC];
-                return $"{value}Ω {ResistanceToleranceMap[colorD]}";
+                decimal value = (ResistanceValueMap[bandAColor] * 10 + ResistanceValueMap[bandBColor]) * ResistanceMagnitudeMap[bandCColor];
+                return (value, ResistanceToleranceMap[bandDColor]);
             }
             else
-                return null;
+                return (decimal.MinusOne, decimal.MinusOne);
         }
 
         private bool CheckInputs(string colorA, string colorB, string colorC, string colorD)
@@ -78,8 +99,6 @@ namespace ResistanceCalc.Models
                 colorD != null && ResistanceToleranceMap.ContainsKey(colorD))
                 return true;
             return false;
-                
-
         }
     }
 }

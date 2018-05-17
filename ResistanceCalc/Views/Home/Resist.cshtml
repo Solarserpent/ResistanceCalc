@@ -3,36 +3,64 @@
     ViewData["Title"] = "Resistance is Useful!";
 }
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <h2>Resistance is Useful!</h2>
-    </div>
-    <div class="col-md-3 col-md-offset-3">
-        <form asp-controller="home" asp-action="Resist">
-            <label>First Color: </label>
-            <select asp-for="ColorA" asp-items="secondColorItems"></select>
-            <label>Second Color: </label>
-            <select asp-for="ColorB" asp-items="secondColorItems"></select>
-            <label>Third Color: </label>
-            <select asp-for="ColorC" asp-items="thirdColorItems"></select>
-            <label>Fourth Color: </label>
-            <select asp-for="ColorD" asp-items="fourthColorItems"></select>
-            <input type="submit" value="Calculate"/>
-        </form>
-    </div>
-    <div class="col-md-3 ">
-        <div>
+<div class="row ">
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-heading">
 
+            @if (Model?.Resistance != "Incorrect Color Given")
+            {
+                <div class="text-primary"><h3>Your Resistance is @Model.Resistance.</h3></div>
+            }
+            else
+            {
+                <div class="text-primary">
+                    <h3>Resistance is useful!</h3>
+                </div>
+            }
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">
+                <form asp-controller="home" asp-action="Resist">
+                    <div class="form-group">
+                        <label>First Color </label>
+                        <select asp-for="ColorA" asp-items="firstColorItems" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Second Color </label>
+                        <select asp-for="ColorB" asp-items="secondColorItems" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Third Color </label>
+                        <select asp-for="ColorC" asp-items="thirdColorItems" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Fourth Color </label>
+                        <select asp-for="ColorD" asp-items="fourthColorItems" class="form-control"></select>
+                    </div>
+                    <div class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">
+                        <div><table class="hor-resistor" align="center">
+                            <tr><td class="hor-ends"><td>
+                            <td class="hor-band" id="bandA"><td>
+                            <td class="hor-blank"><td>
+                            <td class="hor-band" id="bandB"><td>
+                            <td class="hor-blank"><td>
+                            <td class="hor-band" id="bandC"><td>
+                            <td class="hor-blank"><td>
+                            <td class="hor-blank"><td>
+                            <td class="hor-blank"><td>
+                            <td class="hor-blank"><td>
+                            <td class="hor-band" id="bandD"><td>
+                            <td class="hor-ends"></td></tr>
+                        </table><br />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitButton">Show Your Resistance</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-3">
-        @if (Model?.Resistance != null)
-        {
-            <h1>Resistance is @Model.Resistance.</h1>
-        }
-    </div>
 </div>
-
 
 @functions
 {
@@ -73,3 +101,5 @@
     }
 
 }
+
+

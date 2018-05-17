@@ -31,7 +31,7 @@ namespace ResistanceCalc
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddSingleton(typeof(ICalculateResistance), new ResistanceCalculator());
+            services.AddSingleton(typeof(IOhmValueCalculator), new ResistanceCalculator());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -57,7 +57,7 @@ namespace ResistanceCalc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Resist}/{id?}");
             });
         }
     }

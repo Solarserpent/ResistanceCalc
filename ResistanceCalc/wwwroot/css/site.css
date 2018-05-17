@@ -10,26 +10,168 @@
     padding-right: 15px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+.resistor {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: tan;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+.verticalLine {
+    border-right: thick solid #000000;
+    width: 40px;
+    height: 40px;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+.ends {
+    width: 80px;
+    height: 40px;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
+.blank {
+    width: 80px;
+    height: 16px;
+}
+
+.band {
+    width: 80px;
+    height: 12px;
+}
+
+.hor-resistor {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: tan;
+    text-align: center;
+    al
+}
+
+@media only screen and (max-width: 768px) {
+
+
+    .horizontalLine {
+        border-bottom: thin solid #000000;
+        width: 40px;
+        height: 40px;
+    }
+
+    .hor-ends {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hor-blank {
+        width: 16px;
+        height: 40px;
+    }
+
+    .hor-band {
+        width: 12px;
+        height: 40px;
     }
 }
+
+
+@media only screen and (min-width: 769px) {
+
+    .horizontalLine {
+        border-bottom: thick solid #000000;
+        width: 40px;
+        height: 40px;
+    }
+
+    .hor-ends {
+        width: 40px;
+        height: 80px;
+    }
+
+    .hor-blank {
+        width: 16px;
+        height: 80px;
+    }
+
+    .hor-band {
+        width: 12px;
+        height: 80px;
+    }
+}
+
+    .pink {
+        background-color: pink;
+    }
+
+    .silver {
+        background-color: silver;
+    }
+
+    .gold {
+        background-color: gold;
+    }
+
+    .black {
+        background-color: black;
+    }
+
+    .brown {
+        background-color: brown;
+    }
+
+    .red {
+        background-color: red;
+    }
+
+    .orange {
+        background-color: orange;
+    }
+
+    .yellow {
+        background-color: yellow;
+    }
+
+    .green {
+        background-color: green;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .violet {
+        background-color: violet;
+    }
+
+    .gray {
+        background-color: gray;
+    }
+
+    .white {
+        background-color: white;
+    }
+
+    /* Carousel */
+    .carousel-caption p {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    /* Make .svg files in the carousel display properly in older browsers */
+    .carousel-inner .item img[src$=".svg"] {
+        width: 100%;
+    }
+
+    /* QR code generator */
+    #qrCode {
+        margin: 15px;
+    }
+
+
+    h3 {
+        text-align: center
+    }
+
+    #submitButton {
+        width: 100%;
+    }
