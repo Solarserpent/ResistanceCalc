@@ -1,10 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ResistanceCalc.Models;
+using ResistanceCalc.Services;
+using ResistanceCalc.Interfaces;
 
 namespace ResistanceCalc.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class ResistanceCalcUnitTest
     {
         [TestMethod]
         public void TestResistanceCalculatorInputs()
