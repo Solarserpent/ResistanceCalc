@@ -9,16 +9,16 @@ using ResistanceCalc.Models;
 
 namespace ResistanceCalc.Controllers
 {
-    public class HomeController : Controller
+    public class ResistController : Controller
     {
         public IOhmValueCalculator _CalculateResistance { get; }
 
-        public HomeController(IOhmValueCalculator _CalculateResistance)
+        public ResistController(IOhmValueCalculator _CalculateResistance)
         {
             this._CalculateResistance = _CalculateResistance;
         }
 
-        public IActionResult Resist(ResistViewModel resistVM)
+        public IActionResult Index(ResistViewModel resistVM)
         {
             if (resistVM != null && ModelState.IsValid)
             {

@@ -47,7 +47,7 @@ namespace ResistanceCalc
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Resist/Error");
                 app.UseHsts();
             }
 
@@ -59,7 +59,7 @@ namespace ResistanceCalc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Resist}/{id?}");
+                    template: "{controller=Resist}/{action=Index}/{id?}");
             });
         }
     }
