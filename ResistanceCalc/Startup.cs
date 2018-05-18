@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ResistanceCalc.Interfaces;
 using ResistanceCalc.Models;
+using ResistanceCalc.Services;
 
 namespace ResistanceCalc
 {

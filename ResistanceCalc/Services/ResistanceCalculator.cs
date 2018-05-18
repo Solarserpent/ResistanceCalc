@@ -1,27 +1,12 @@
-﻿using System;
+﻿using ResistanceCalc.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ResistanceCalc.Models
+namespace ResistanceCalc.Services
 {
-    public interface IOhmValueCalculator
-    {
-        string CalculateResistance(string bandAColor, string bandBColor, string bandCColor, string bandDColor);
-
-        /// <summary>
-        /// Calculates the Ohm value of a resistor based on the band colors.
-        /// </summary>
-        /// <param name="bandAColor">The color of the first figure of component value band.</param>
-        /// <param name="bandBColor">The color of the second significant figure band.</param>
-        /// <param name="bandCColor">The color of the decimal multiplier band.</param>
-        /// <param name="bandDColor">The color of the tolerance value band.</param>
-        (decimal value, decimal tolerance) CalculateOhmValue(string bandAColor, string bandBColor, string bandCColor, string bandDColor);
-
-
-    }
-
-        public class ResistanceCalculator : IOhmValueCalculator
+    public class ResistanceCalculator : IOhmValueCalculator
     {
         public static readonly Dictionary<string, int> ResistanceValueMap = new Dictionary<string, int>()
         {
@@ -72,7 +57,7 @@ namespace ResistanceCalc.Models
 
         public string CalculateResistance(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
         {
-                (decimal value, decimal tolerance) = CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor);
+            (decimal value, decimal tolerance) = CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor);
             if (value == decimal.MinusOne)
                 return "Incorrect Color Given";
             else
