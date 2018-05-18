@@ -1,6 +1,9 @@
 # ResistanceCalc
 Resistance Calculator based on Color Code
 
+A working example of this calculator is available at:
+http://resistancecalculator.azurewebsites.net/
+
 This project runs on .Net core 2.1 so you will need the Visual Studio 2017 version 15.7+.
 To run please download the latest version of Visual Studio 2017.
 <a href="https://www.visualstudio.com/vs/community/">This link will take you to get Visual Studio Community.</a>
