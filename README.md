@@ -15,5 +15,9 @@ Go to the Local Git Repository area on the right and click the link marked <b>cl
 
 Once the repository is downloaded you should see a directory structure. There will be a file named ResistanceCalc.sln file. Double-click on that file to open the solution for running, debugging and editting. 
 
-To easily run tests and check test results you can open the Test Explorer by going to the <i>Test > Windows > Test Explorer</i> or by hitting Ctrl+E then T.
+To Compile the solution hit <b>Ctrl+Shift+B</b> or go to <i>Build > Build Solution</i>.
+
+To Debug the solution hit <b>F5</b> or go to <i>Debug > Start Debugging
+
+To easily run tests and check test results you can open the Test Explorer by going to <i>Test > Windows > Test Explorer</i> or by hitting <b>Ctrl+E then T</b>. Then hit the <b>Run All</b> link.
 
