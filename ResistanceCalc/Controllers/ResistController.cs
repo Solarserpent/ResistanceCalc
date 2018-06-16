@@ -32,5 +32,15 @@ namespace ResistanceCalc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult GetResistance([FromBody] ResistViewModel resistVM)
+        {
+            if (resistVM != null && ModelState.IsValid)
+            {
+                return Ok(_CalculateResistance.CalculateResistance(resistVM.ColorA, resistVM.ColorB, resistVM.ColorC, resistVM.ColorD));
+            }
+            return BadRequest("ModelState is invalid!");
+        }
     }
 }
